@@ -26,6 +26,8 @@ Open your GitHub repository, then go to:
 
 ### Repository Secrets
 
+Secrets are required for private credentials. Do not put tokens or JSON keys in repository variables.
+
 For a personal Google Drive folder, create this secret:
 
 | Name | Value |
@@ -42,7 +44,7 @@ If both secrets exist, the workflow uses `GDRIVE_RCLONE_TOKEN`.
 
 ### Repository Variables
 
-Create this variable:
+Only non-secret settings belong here. Create this variable:
 
 | Name | Value |
 | --- | --- |
@@ -59,6 +61,24 @@ For that URL, set:
 ```text
 GDRIVE_FOLDER_ID=1AbCdEfGhIjKlMnOpQrStUvWxYz
 ```
+
+### Correct GitHub placement checklist
+
+Use this exact placement:
+
+| Setting | GitHub tab | Why |
+| --- | --- | --- |
+| `GDRIVE_RCLONE_TOKEN` | `Secrets` | Contains OAuth access and refresh tokens. |
+| `GDRIVE_SERVICE_ACCOUNT_JSON` | `Secrets` | Contains a private key. |
+| `GDRIVE_FOLDER_ID` | `Variables` | Folder IDs are not credentials. |
+
+If `GDRIVE_RCLONE_TOKEN` is accidentally created under `Variables`, the workflow cannot read it because it uses `secrets.GDRIVE_RCLONE_TOKEN`. It will fall back to `GDRIVE_SERVICE_ACCOUNT_JSON` if that secret exists, which can produce this error on personal My Drive folders:
+
+```text
+Service Accounts do not have storage quota
+```
+
+If a token or service account JSON was pasted into `Variables`, delete it from `Variables`, recreate it under `Secrets`, and rotate that credential after the sync is working.
 
 ## Google Drive setup
 
