@@ -50,17 +50,24 @@ jobs:
           STAGING="$RUNNER_TEMP/colab-drive-sync"
           mkdir -p "$STAGING"
 
+          mkdir -p "$STAGING/src"
           rsync -av \
             --include='*/' \
             --include='*.ipynb' \
             --include='*.py' \
-            --include='requirements*.txt' \
-            --include='pyproject.toml' \
-            --include='config/***' \
             --exclude='.ipynb_checkpoints/***' \
             --exclude='__pycache__/***' \
             --exclude='*' \
-            ./ "$STAGING/"
+            src/ "$STAGING/src/"
+
+          if [ -d config ]; then
+            rsync -av config/ "$STAGING/config/"
+          fi
+
+          find . -maxdepth 1 -type f \( \
+            -name 'requirements*.txt' -o \
+            -name 'pyproject.toml' \
+          \) -exec cp {} "$STAGING/" \;
 
           find "$STAGING" -type f | sort
 

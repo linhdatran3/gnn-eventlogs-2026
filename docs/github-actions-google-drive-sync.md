@@ -16,6 +16,8 @@ The workflow uploads:
 
 It skips Jupyter checkpoint files and Python cache directories.
 
+The workflow stages only the upload bundle before syncing. It does not upload `.git`, `data`, `output`, IDE files, or other repository directories.
+
 ## GitHub repository settings
 
 Open your GitHub repository, then go to:
@@ -66,6 +68,17 @@ github-colab-sync@your-project.iam.gserviceaccount.com
 
 Give it `Editor` access.
 
+If GitHub Actions reports an error like this:
+
+```text
+googleapi: Error 404: File not found: <folder-id>, notFound
+```
+
+check both of these:
+
+1. `GDRIVE_FOLDER_ID` is only the folder ID, not the full Google Drive URL.
+2. The exact Drive folder is shared with the service account email with `Editor` access.
+
 ## How Colab receives the new files
 
 Google Colab reads notebooks directly from Google Drive. After a push to `main` completes:
@@ -98,4 +111,3 @@ Replace `path-to-synced-folder` with the visible path of your Google Drive sync 
 The workflow also supports manual runs:
 
 `Actions` -> `Sync Colab notebooks to Google Drive` -> `Run workflow`
-
