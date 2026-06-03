@@ -24,6 +24,7 @@ jobs:
     env:
       GDRIVE_FOLDER_ID: ${{ vars.GDRIVE_FOLDER_ID }}
       GDRIVE_SERVICE_ACCOUNT_JSON: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_JSON }}
+      GDRIVE_RCLONE_TOKEN: ${{ secrets.GDRIVE_RCLONE_TOKEN }}
 
     steps:
       - name: Checkout repository
@@ -35,10 +36,10 @@ jobs:
             echo "Repository variable GDRIVE_FOLDER_ID is required."
             exit 1
           }
-          test -n "$GDRIVE_SERVICE_ACCOUNT_JSON" || {
-            echo "Repository secret GDRIVE_SERVICE_ACCOUNT_JSON is required."
+          if [ -z "$GDRIVE_RCLONE_TOKEN" ] && [ -z "$GDRIVE_SERVICE_ACCOUNT_JSON" ]; then
+            echo "Set repository secret GDRIVE_RCLONE_TOKEN for personal My Drive OAuth, or GDRIVE_SERVICE_ACCOUNT_JSON for Shared Drive/service-account sync."
             exit 1
-          }
+          fi
 
       - name: Install rclone
         run: |
@@ -52,11 +53,11 @@ jobs:
 
           mkdir -p "$STAGING/src"
           rsync -av \
+            --exclude='.ipynb_checkpoints/***' \
+            --exclude='__pycache__/***' \
             --include='*/' \
             --include='*.ipynb' \
             --include='*.py' \
-            --exclude='.ipynb_checkpoints/***' \
-            --exclude='__pycache__/***' \
             --exclude='*' \
             src/ "$STAGING/src/"
 
@@ -73,6 +74,14 @@ jobs:
 
       - name: Configure rclone Google Drive remote
         run: |
+          if [ -n "$GDRIVE_RCLONE_TOKEN" ]; then
+            rclone config create colab_drive drive \
+              scope drive \
+              token "$GDRIVE_RCLONE_TOKEN" \
+              root_folder_id "$GDRIVE_FOLDER_ID"
+            exit 0
+          fi
+
           SERVICE_ACCOUNT_FILE="$RUNNER_TEMP/gdrive-service-account.json"
           printf '%s' "$GDRIVE_SERVICE_ACCOUNT_JSON" > "$SERVICE_ACCOUNT_FILE"
 
