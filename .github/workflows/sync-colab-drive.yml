@@ -5,6 +5,9 @@ on:
     branches:
       - main
     paths:
+      - "run_colab.ipynb"
+      - "data/**"
+      - "output/*.csv"
       - "src/**/*.ipynb"
       - "src/**/*.py"
       - "config/**"
@@ -19,7 +22,7 @@ concurrency:
 
 jobs:
   sync:
-    name: Upload notebooks and runtime files
+    name: Upload Colab runtime files and datasets
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -69,8 +72,25 @@ jobs:
             exit 1
           fi
 
+          if [ -d data ]; then
+            rsync -av data/ "$STAGING/data/"
+          fi
+
+          if [ -d output ]; then
+            mkdir -p "$STAGING/output"
+            rsync -av \
+              --include='*/' \
+              --include='*.csv' \
+              --exclude='*' \
+              output/ "$STAGING/output/"
+          fi
+
           if [ -d config ]; then
             rsync -av config/ "$STAGING/config/"
+          fi
+
+          if [ -f run_colab.ipynb ]; then
+            cp run_colab.ipynb "$STAGING/"
           fi
 
           find . -maxdepth 1 -type f \( \
@@ -90,12 +110,12 @@ jobs:
           echo "Checking rclone remote..."
           rclone config show colab_drive --config ~/.config/rclone/rclone.conf >/dev/null
 
-      - name: Sync bundle to Google Drive
+      - name: Copy bundle to Google Drive
         run: |
           STAGING="$RUNNER_TEMP/colab-drive-sync"
 
-          rclone sync "$STAGING/" colab_drive: \
+          rclone copy "$STAGING/" colab_drive: \
             --create-empty-src-dirs \
+            --drive-root-folder-id "$GDRIVE_FOLDER_ID" \
             --drive-acknowledge-abuse \
             --progress
-
