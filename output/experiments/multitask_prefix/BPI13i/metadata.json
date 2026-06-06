@@ -1,0 +1,89 @@
+{
+  "dataset": "BPI13i",
+  "source_file": "/Users/teq-intel/Desktop/linhda/uit/de-cuong/gnn-eventlogs-2026/output/BPI13i.csv",
+  "seed": 42,
+  "split_ratios": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
+  },
+  "num_cases": 7553,
+  "num_events": 65532,
+  "num_prefixes": 65532,
+  "split_counts_cases": {
+    "test": 1134,
+    "train": 5287,
+    "val": 1132
+  },
+  "split_counts_prefixes": {
+    "test": 9935,
+    "train": 46033,
+    "val": 9564
+  },
+  "activity_label_map": {
+    "Aa": 0,
+    "Ae": 1,
+    "Ag": 2,
+    "Aj": 3,
+    "Ak": 4,
+    "Al": 5,
+    "Am": 6,
+    "Bc": 7,
+    "Bd": 8,
+    "Bh": 9,
+    "Bi": 10,
+    "Cb": 11,
+    "Df": 12,
+    "EOS": 13
+  },
+  "outcome_strategy": "final_event_outcome",
+  "outcome_metadata": {
+    "fit_split": "train",
+    "class_counts_train": {
+      "Bd": 3880,
+      "Bh": 1337,
+      "Bi": 63,
+      "Al": 3,
+      "Ak": 2,
+      "Bc": 1,
+      "Ae": 1
+    },
+    "top_class_share_train": 0.7338755437866465,
+    "meaningful_class_min_share": 0.01
+  },
+  "outcome_label_map": {
+    "Aa": 0,
+    "Ae": 1,
+    "Ak": 2,
+    "Al": 3,
+    "Bc": 4,
+    "Bd": 5,
+    "Bh": 6,
+    "Bi": 7
+  },
+  "remaining_time_normalization": {
+    "mean_seconds": 1211561.5842113267,
+    "std_seconds": 2904334.4345620354,
+    "fit_split": "train"
+  },
+  "columns": {
+    "case_id": "sequence",
+    "event": "event",
+    "timestamp": "time",
+    "event_features": [
+      "ec1",
+      "ec4"
+    ],
+    "case_features": [
+      "sc1",
+      "sc2",
+      "sc3"
+    ]
+  },
+  "leakage_controls": [
+    "Cases are split before prefix rows are used for training.",
+    "Remaining-time normalization is fitted on train prefixes only.",
+    "Duration-risk threshold is fitted on train cases only.",
+    "Prefix rows store prefix_end_index and do not include future events."
+  ]
+}

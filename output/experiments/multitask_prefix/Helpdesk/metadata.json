@@ -1,0 +1,82 @@
+{
+  "dataset": "Helpdesk",
+  "source_file": "/Users/teq-intel/Desktop/linhda/uit/de-cuong/gnn-eventlogs-2026/output/helpdesk.csv",
+  "seed": 42,
+  "split_ratios": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
+  },
+  "num_cases": 4580,
+  "num_events": 21221,
+  "num_prefixes": 21221,
+  "split_counts_cases": {
+    "test": 687,
+    "train": 3206,
+    "val": 687
+  },
+  "split_counts_prefixes": {
+    "test": 3181,
+    "train": 14804,
+    "val": 3236
+  },
+  "activity_label_map": {
+    "A": 0,
+    "B": 1,
+    "C": 2,
+    "D": 3,
+    "E": 4,
+    "EOS": 5,
+    "F": 6,
+    "G": 7,
+    "H": 8,
+    "I": 9,
+    "J": 10,
+    "K": 11,
+    "L": 12,
+    "M": 13,
+    "N": 14
+  },
+  "outcome_strategy": "duration_p75_risk",
+  "outcome_metadata": {
+    "fit_split": "train",
+    "risk_quantile": 0.75,
+    "duration_threshold_seconds": 3974896.25,
+    "reason": "Final event/status is too dominant for a meaningful outcome label.",
+    "final_event_counts_train": {
+      "B": 3191,
+      "J": 8,
+      "N": 4,
+      "M": 1,
+      "L": 1,
+      "H": 1
+    },
+    "top_class_share_train": 0.9953212726138491
+  },
+  "outcome_label_map": {
+    "risk_high": 0,
+    "risk_normal": 1
+  },
+  "remaining_time_normalization": {
+    "mean_seconds": 2376818.0848419345,
+    "std_seconds": 1534427.7667868417,
+    "fit_split": "train"
+  },
+  "columns": {
+    "case_id": "sequence",
+    "event": "event",
+    "timestamp": "time",
+    "event_features": [
+      "ec1"
+    ],
+    "case_features": [
+      "sc1"
+    ]
+  },
+  "leakage_controls": [
+    "Cases are split before prefix rows are used for training.",
+    "Remaining-time normalization is fitted on train prefixes only.",
+    "Duration-risk threshold is fitted on train cases only.",
+    "Prefix rows store prefix_end_index and do not include future events."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "datasets": [
+    {
+      "dataset": "BPI12w",
+      "num_cases": 9658,
+      "num_events": 170107,
+      "num_prefixes": 170107,
+      "outcome_strategy": "final_event_outcome",
+      "output_dir": "/Users/teq-intel/Desktop/linhda/uit/de-cuong/gnn-eventlogs-2026/output/experiments/multitask_prefix/BPI12w"
+    },
+    {
+      "dataset": "Helpdesk",
+      "num_cases": 4580,
+      "num_events": 21221,
+      "num_prefixes": 21221,
+      "outcome_strategy": "duration_p75_risk",
+      "output_dir": "/Users/teq-intel/Desktop/linhda/uit/de-cuong/gnn-eventlogs-2026/output/experiments/multitask_prefix/Helpdesk"
+    },
+    {
+      "dataset": "BPI13i",
+      "num_cases": 7553,
+      "num_events": 65532,
+      "num_prefixes": 65532,
+      "outcome_strategy": "final_event_outcome",
+      "output_dir": "/Users/teq-intel/Desktop/linhda/uit/de-cuong/gnn-eventlogs-2026/output/experiments/multitask_prefix/BPI13i"
+    },
+    {
+      "dataset": "BPI13c",
+      "num_cases": 1486,
+      "num_events": 6659,
+      "num_prefixes": 6659,
+      "outcome_strategy": "duration_p75_risk",
+      "output_dir": "/Users/teq-intel/Desktop/linhda/uit/de-cuong/gnn-eventlogs-2026/output/experiments/multitask_prefix/BPI13c"
+    }
+  ]
+}

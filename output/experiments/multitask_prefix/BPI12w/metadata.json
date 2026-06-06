@@ -1,0 +1,95 @@
+{
+  "dataset": "BPI12w",
+  "source_file": "/Users/teq-intel/Desktop/linhda/uit/de-cuong/gnn-eventlogs-2026/output/BPI12w.csv",
+  "seed": 42,
+  "split_ratios": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
+  },
+  "num_cases": 9658,
+  "num_events": 170107,
+  "num_prefixes": 170107,
+  "split_counts_cases": {
+    "test": 1450,
+    "train": 6760,
+    "val": 1448
+  },
+  "split_counts_prefixes": {
+    "test": 25037,
+    "train": 119858,
+    "val": 25212
+  },
+  "activity_label_map": {
+    "EOS": 0,
+    "WDa": 1,
+    "WDb": 2,
+    "WDc": 3,
+    "WEa": 4,
+    "WEb": 5,
+    "WEc": 6,
+    "WHa": 7,
+    "WHb": 8,
+    "WHc": 9,
+    "WKa": 10,
+    "WKb": 11,
+    "WKc": 12,
+    "WLa": 13,
+    "WLb": 14,
+    "WLc": 15,
+    "WTa": 16,
+    "WTb": 17,
+    "WTc": 18,
+    "WUb": 19
+  },
+  "outcome_strategy": "final_event_outcome",
+  "outcome_metadata": {
+    "fit_split": "train",
+    "class_counts_train": {
+      "WTa": 1911,
+      "WHa": 1632,
+      "WDa": 1570,
+      "WLa": 1272,
+      "WKa": 332,
+      "WEa": 39,
+      "WUb": 2,
+      "WLc": 1,
+      "WTc": 1
+    },
+    "top_class_share_train": 0.2826923076923077,
+    "meaningful_class_min_share": 0.01
+  },
+  "outcome_label_map": {
+    "WDa": 0,
+    "WEa": 1,
+    "WHa": 2,
+    "WKa": 3,
+    "WLa": 4,
+    "WLc": 5,
+    "WTa": 6,
+    "WTc": 7,
+    "WUb": 8
+  },
+  "remaining_time_normalization": {
+    "mean_seconds": 962586.9082998214,
+    "std_seconds": 1041513.9732266691,
+    "fit_split": "train"
+  },
+  "columns": {
+    "case_id": "sequence",
+    "event": "event",
+    "timestamp": "time",
+    "event_features": [
+      "ec1"
+    ],
+    "case_features": [
+      "sn1"
+    ]
+  },
+  "leakage_controls": [
+    "Cases are split before prefix rows are used for training.",
+    "Remaining-time normalization is fitted on train prefixes only.",
+    "Duration-risk threshold is fitted on train cases only.",
+    "Prefix rows store prefix_end_index and do not include future events."
+  ]
+}

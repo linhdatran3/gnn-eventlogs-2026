@@ -1,0 +1,73 @@
+{
+  "dataset": "BPI13c",
+  "source_file": "/Users/teq-intel/Desktop/linhda/uit/de-cuong/gnn-eventlogs-2026/output/BPI13c.csv",
+  "seed": 42,
+  "split_ratios": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
+  },
+  "num_cases": 1486,
+  "num_events": 6659,
+  "num_prefixes": 6659,
+  "split_counts_cases": {
+    "test": 224,
+    "train": 1040,
+    "val": 222
+  },
+  "split_counts_prefixes": {
+    "test": 993,
+    "train": 4690,
+    "val": 976
+  },
+  "activity_label_map": {
+    "Aa": 0,
+    "Ae": 1,
+    "Ag": 2,
+    "Bc": 3,
+    "Bd": 4,
+    "Cb": 5,
+    "Df": 6,
+    "EOS": 7
+  },
+  "outcome_strategy": "duration_p75_risk",
+  "outcome_metadata": {
+    "fit_split": "train",
+    "risk_quantile": 0.75,
+    "duration_threshold_seconds": 22387866.0,
+    "reason": "Final event/status is too dominant for a meaningful outcome label.",
+    "final_event_counts_train": {
+      "Bd": 1040
+    },
+    "top_class_share_train": 1.0
+  },
+  "outcome_label_map": {
+    "risk_high": 0,
+    "risk_normal": 1
+  },
+  "remaining_time_normalization": {
+    "mean_seconds": 11406046.373347549,
+    "std_seconds": 17804279.440203793,
+    "fit_split": "train"
+  },
+  "columns": {
+    "case_id": "sequence",
+    "event": "event",
+    "timestamp": "time",
+    "event_features": [
+      "ec1",
+      "ec4"
+    ],
+    "case_features": [
+      "sc1",
+      "sc2",
+      "sc3"
+    ]
+  },
+  "leakage_controls": [
+    "Cases are split before prefix rows are used for training.",
+    "Remaining-time normalization is fitted on train prefixes only.",
+    "Duration-risk threshold is fitted on train cases only.",
+    "Prefix rows store prefix_end_index and do not include future events."
+  ]
+}
