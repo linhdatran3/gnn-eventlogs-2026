@@ -1,0 +1,44 @@
+{
+  "config": {
+    "dataset": "Helpdesk",
+    "model": "gat_t",
+    "epochs_requested": 1,
+    "best_epoch": 1,
+    "batch_size": 64,
+    "lr": 0.001,
+    "hidden_dim": 16,
+    "event_emb_dim": 16,
+    "heads": 2,
+    "alpha": 0.5,
+    "beta": 0.5,
+    "num_train_cases": 80,
+    "num_val_cases": 30,
+    "num_test_cases": 30
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train": {
+        "loss": 2.739781089451002
+      },
+      "val": {
+        "next_accuracy": 0.06428571428571428,
+        "next_macro_f1": 0.023715415019762844,
+        "next_weighted_f1": 0.06149068322981366,
+        "loss": 2.655195951461792
+      }
+    }
+  ],
+  "val": {
+    "next_accuracy": 0.06428571428571428,
+    "next_macro_f1": 0.023715415019762844,
+    "next_weighted_f1": 0.06149068322981366,
+    "loss": 2.655195951461792
+  },
+  "test": {
+    "next_accuracy": 0.07142857142857142,
+    "next_macro_f1": 0.028645833333333332,
+    "next_weighted_f1": 0.07767857142857143,
+    "loss": 2.6735951900482178
+  }
+}

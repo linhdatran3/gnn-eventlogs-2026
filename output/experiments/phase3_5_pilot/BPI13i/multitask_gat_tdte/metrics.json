@@ -1,0 +1,76 @@
+{
+  "config": {
+    "dataset": "BPI13i",
+    "model": "multitask_gat_tdte",
+    "epochs_requested": 2,
+    "best_epoch": 2,
+    "batch_size": 64,
+    "lr": 0.001,
+    "hidden_dim": 16,
+    "event_emb_dim": 16,
+    "heads": 2,
+    "alpha": 0.5,
+    "beta": 0.5,
+    "num_train_cases": 300,
+    "num_val_cases": 100,
+    "num_test_cases": 100
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train": {
+        "loss": 3.675231033753045
+      },
+      "val": {
+        "next_accuracy": 0.14709517923362175,
+        "next_macro_f1": 0.06110823458113376,
+        "next_weighted_f1": 0.16961554899177222,
+        "loss": 3.511111515856202,
+        "remaining_mae_norm": 0.3166843600521078,
+        "remaining_rmse_norm": 0.6792536380625607,
+        "outcome_accuracy": 0.765142150803461,
+        "outcome_macro_f1": 0.21069367867675343,
+        "outcome_weighted_f1": 0.7881055398215135
+      }
+    },
+    {
+      "epoch": 2,
+      "train": {
+        "loss": 3.4529158540416978
+      },
+      "val": {
+        "next_accuracy": 0.43757725587144625,
+        "next_macro_f1": 0.12218931126899586,
+        "next_weighted_f1": 0.32345939470462787,
+        "loss": 3.2871994155888506,
+        "remaining_mae_norm": 0.29134678015599375,
+        "remaining_rmse_norm": 0.6792601858886506,
+        "outcome_accuracy": 0.8009888751545118,
+        "outcome_macro_f1": 0.1786354238456237,
+        "outcome_weighted_f1": 0.8059571038770414
+      }
+    }
+  ],
+  "val": {
+    "next_accuracy": 0.43757725587144625,
+    "next_macro_f1": 0.12218931126899586,
+    "next_weighted_f1": 0.32345939470462787,
+    "loss": 3.2871994155888506,
+    "remaining_mae_norm": 0.29134678015599375,
+    "remaining_rmse_norm": 0.6792601858886506,
+    "outcome_accuracy": 0.8009888751545118,
+    "outcome_macro_f1": 0.1786354238456237,
+    "outcome_weighted_f1": 0.8059571038770414
+  },
+  "test": {
+    "next_accuracy": 0.42033898305084744,
+    "next_macro_f1": 0.1356709712335513,
+    "next_weighted_f1": 0.309704563638775,
+    "loss": 3.252747506610418,
+    "remaining_mae_norm": 0.21931510112842934,
+    "remaining_rmse_norm": 0.35527300783446547,
+    "outcome_accuracy": 0.8248587570621468,
+    "outcome_macro_f1": 0.1810291382517049,
+    "outcome_weighted_f1": 0.8437798816816754
+  }
+}
